@@ -1,15 +1,6 @@
-# Behold the ReactJS + ExpressJS Boilerplate
+# Park-finder
 
-I wrote an [article] about this repo which explains the structure.
-
-This is a boilerplate to use ReactJS, ExpressJS, Redux and React Router v4 in a project.
-
-- [ReactJS] - The state based framework for your Views
-- [React Router v4] - For routing to different paths
-- [Redux] - Redux manages your state
-- [Babel] - The compiler to compile your JS files with es6, es7, JSX syntax to regular javascript
-- [Webpack] - The module binder which takes all your JS files from different directories and compiles them into a single app.bundle.js (you can change the filename of course) so you can include it in a HTML page
-- [ExpressJS] - The node framework to serve your views to the world when they hit the server at example.com or example.com/awesome.html
+A new test project using ReactJS + ExpressJS Boilerplate
 
 
 # Installation
@@ -31,7 +22,7 @@ Now you can access your react application on http://localhost:8080
 To make a production build of your project, run the following commands
 
     npm run build
-  
+
 This will create create two files: `index.js` in `server/public/js` and `server.js` in `server/bin`.
 
 `server.js` will be used for serving the application on port 3000 and `index.js` is the actual react app itself.

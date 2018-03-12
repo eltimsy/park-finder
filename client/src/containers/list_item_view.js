@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { viewItem } from '../actions/list_actions';
+import { viewItem, clearItem } from '../actions/list_actions';
 import ItemView from '../components/list_item_view';
 
 const mapStateToProps = state => ({

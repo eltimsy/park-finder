@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const ListItemPreview = ({ item }) => {
+const ListItemPreview = ({ item, park }) => {
   if (!item) {
     return (
       <div className="preview">
@@ -18,16 +18,25 @@ const ListItemPreview = ({ item }) => {
       <Link to={`view/${item.name}`}>
         <button type="button" className="btn btn-primary">Read More</button>
       </Link>
+      { item.name === "parks" ? (
+        <ul>
+          {park.map(function(park, index) {
+            return <li key={ index }>{park.name} {park.location}</li>;
+          })}
+        </ul>
+      ) : null}
     </div>
   );
 };
 
 ListItemPreview.propTypes = {
   item: PropTypes.object,
+  park: PropTypes.array,
 };
 
 ListItemPreview.defaultProps = {
   item: null,
+  park: null,
 };
 
 export default ListItemPreview;

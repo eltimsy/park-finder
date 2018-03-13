@@ -10,6 +10,7 @@ import ListItemPreview from '../components/list_item_preview';
 function mapStateToProps(state) {
   return {
     item: state.list.itemPreview,
+    park: state.list.parks,
   };
 }
 

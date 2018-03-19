@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import ParksList from '../containers/parks_list';
 
 const ListItemPreview = ({ item, park }) => {
   if (!item) {
@@ -19,11 +20,7 @@ const ListItemPreview = ({ item, park }) => {
         <button type="button" className="btn btn-primary">Read More</button>
       </Link>
       { item.name === "parks" ? (
-        <ul>
-          {park.map(function(park, index) {
-            return <li key={ index }>{park.name} {park.location}</li>;
-          })}
-        </ul>
+        <ParksList />
       ) : null}
     </div>
   );

@@ -32,6 +32,7 @@
   "homepage": "https://github.com/tahnik/react-express-webpack-babel#readme",
   "dependencies": {
     "cross-env": "^5.0.5",
+    "dotenv": "^5.0.1",
     "ejs": "^2.5.7",
     "express": "^4.14.0",
     "prop-types": "^15.5.10",

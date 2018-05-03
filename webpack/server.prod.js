@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   context: path.join(__dirname, '../server'),
@@ -35,7 +36,7 @@ module.exports = {
             options: {
               outputPath: 'images/',
               emitFile: false,
-            }  
+            }
           }
         ]
       },
@@ -46,6 +47,10 @@ module.exports = {
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
       }
+    }),
+    new Dotenv({
+      path: './.env',
+      silent: true
     }),
     new UglifyJSPlugin({
       sourceMap: true

@@ -1,6 +1,7 @@
 import express from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
+import Sequelize from 'sequelize';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
@@ -8,9 +9,18 @@ import reducers from '../../client/src/reducers/index';
 import { LIST_ACTIONS } from '../../client/src/consts/action_types';
 import App from '../../client/src/app';
 
+const sequelize = new Sequelize(process.env.DB_HOST, { operatorsAliases: false });
 const router = express.Router();
 
 router.get('/', (req, res) => {
+  sequelize
+    .authenticate()
+    .then(() => {
+      console.log('Connection has been established successfully.');
+    })
+    .catch((err) => {
+      console.error('Unable to connect to the database:', err);
+    });
   /*
     http://redux.js.org/docs/recipes/ServerRendering.html
   */

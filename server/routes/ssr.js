@@ -9,7 +9,10 @@ import reducers from '../../client/src/reducers/index';
 import { LIST_ACTIONS } from '../../client/src/consts/action_types';
 import App from '../../client/src/app';
 
+const ParksModel = require('../../models/park');
+
 const sequelize = new Sequelize(process.env.DB_HOST, { operatorsAliases: false });
+const Parks = ParksModel(sequelize, Sequelize);
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -21,6 +24,8 @@ router.get('/', (req, res) => {
     .catch((err) => {
       console.error('Unable to connect to the database:', err);
     });
+  Parks.findAll({});
+  console.log(Parks);
   /*
     http://redux.js.org/docs/recipes/ServerRendering.html
   */

@@ -6,8 +6,8 @@ module.exports = {
       name: 'test',
       location: 'test',
       website: 'test',
-      created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
-      updated_at: Sequelize.literal('CURRENT_TIMESTAMP')
+      createdAt: Sequelize.literal('CURRENT_TIMESTAMP'),
+      updatedAt: Sequelize.literal('CURRENT_TIMESTAMP')
     }], {});
   },
 

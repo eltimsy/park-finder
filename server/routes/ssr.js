@@ -24,8 +24,13 @@ router.get('/', (req, res) => {
     .catch((err) => {
       console.error('Unable to connect to the database:', err);
     });
-  Parks.findAll({});
-  console.log(Parks);
+  let test = null;
+  sequelize
+    .query("SELECT * FROM parks where name = 'test'", { raw: true })
+    .then((results) => {
+      test = results;
+      console.log(test);
+    });
   /*
     http://redux.js.org/docs/recipes/ServerRendering.html
   */

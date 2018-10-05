@@ -18,3 +18,11 @@ export const addItem = item => ({
 export const clearItem = () => ({
   type: LIST_ACTIONS.ITEM_CLEAR,
 });
+
+export function addPark(name, location) {
+  return {
+    type: 'ADD_PARK',
+    name,
+    location
+  }
+}

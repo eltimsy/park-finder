@@ -24,13 +24,6 @@ router.get('/', (req, res) => {
     .catch((err) => {
       console.error('Unable to connect to the database:', err);
     });
-  let test = null;
-  sequelize
-    .query("SELECT * FROM parks where name = 'test'", { raw: true })
-    .then((results) => {
-      test = results;
-      console.log(test);
-    });
   /*
     http://redux.js.org/docs/recipes/ServerRendering.html
   */
@@ -53,14 +46,14 @@ router.get('/', (req, res) => {
       But if you inject the latest items/articles before it reaches the user, the Search Engine will see the
       item/article immediately.
        */
-  store.dispatch({
-    type: LIST_ACTIONS.ITEM_ADD,
-    item: {
-      name: 'middleware',
-      description: `Redux middleware solves different problems than Express or Koa middleware, but in a conceptually similar way.
-      It provides a third-party extension point between dispatching an action, and the moment it reaches the reducer.`,
-    },
-  });
+  // store.dispatch({
+  //   type: LIST_ACTIONS.ITEM_ADD,
+  //   item: {
+  //     name: 'middleware',
+  //     description: `Redux middleware solves different problems than Express or Koa middleware, but in a conceptually similar way.
+  //     It provides a third-party extension point between dispatching an action, and the moment it reaches the reducer.`,
+  //   },
+  // });
 
   const context = {};
 
@@ -74,20 +67,32 @@ router.get('/', (req, res) => {
       </StaticRouter>
     </Provider>,
   );
+  sequelize
+    .query("SELECT * FROM parks where name = 'park1'", { raw: true })
+    .then((results) => {
+      const test = results;
+      console.log(test[0][0].name);
+      store.dispatch({
+        type: LIST_ACTIONS.ITEM_ADD,
+        item: {
+          name: test[0][0].name,
+          description: test[0][0].location,
+        },
+      });
+      const finalState = store.getState();
 
-  const finalState = store.getState();
-
-  if (context.url) {
-    res.writeHead(301, {
-      Location: context.url,
+      if (context.url) {
+        res.writeHead(301, {
+          Location: context.url,
+        });
+        res.end();
+      } else {
+        res.status(200).render('../views/index.ejs', {
+          html,
+          script: JSON.stringify(finalState),
+        });
+      }
     });
-    res.end();
-  } else {
-    res.status(200).render('../views/index.ejs', {
-      html,
-      script: JSON.stringify(finalState),
-    });
-  }
 });
 
 
